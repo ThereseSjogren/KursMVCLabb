@@ -17,6 +17,9 @@ namespace MVCLabb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-      
+      protected void Application_Error()
+        {
+            Response.Redirect("/ErrorPage/Error");
+        }
     }
 }
