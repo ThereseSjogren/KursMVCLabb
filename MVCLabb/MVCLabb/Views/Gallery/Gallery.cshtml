@@ -1,7 +1,12 @@
-﻿
-@{
+﻿@model List<MVCLabb.Models.Photo>
+    @{ 
     ViewBag.Title = "Gallery";
 }
 
 <h2>Gallery</h2>
+<p>Here are some photos</p>
 
+@foreach(var photo in Model)
+{
+    <img src="/Image/@photo.PhotoName"/>
+}

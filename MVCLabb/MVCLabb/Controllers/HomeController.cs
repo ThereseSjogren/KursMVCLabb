@@ -15,7 +15,7 @@ namespace MVCLabb.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "An application with photos";
 
             return View();
         }
