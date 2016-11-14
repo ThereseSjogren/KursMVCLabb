@@ -28,7 +28,7 @@ namespace MVCLabb.Controllers
             var showphoto = photos.ElementAt(id);
             return View(showphoto);
         }
-        public ActionResult AddPicture()
+        public ActionResult UploadPicture()
         {
             return View();
         }
