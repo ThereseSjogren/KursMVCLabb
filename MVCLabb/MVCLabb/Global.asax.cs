@@ -17,5 +17,6 @@ namespace MVCLabb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+      
     }
 }
