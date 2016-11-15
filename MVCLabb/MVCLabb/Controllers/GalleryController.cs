@@ -17,20 +17,21 @@ namespace MVCLabb.Controllers
             if (!photos.Any())
             {
 
-                photos.Add(new Photo { PhotoName = "Skimboard.jpg" });
-                photos.Add(new Photo { PhotoName = "SkimboardThree.jpg" });
-                photos.Add(new Photo { PhotoName = "SunsetSurf.jpg" });
-                photos.Add(new Photo { PhotoName = "surf.jpg" });
-                photos.Add(new Photo { PhotoName = "Water.jpg" }); 
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Skimboard.jpg" });
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "SkimboardThree.jpg" });
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "SunsetSurf.jpg" });
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "surf.jpg" });
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Water.jpg" }); 
             }
         }
         public ActionResult Gallery()
         {
             return View(photos);
         }
-        public ActionResult ShowImage(int id)
+       
+        public ActionResult ShowImage(Guid id)
         {
-            var showphoto =photos.ElementAt(id);
+            var showphoto =photos.FirstOrDefault(x=>x.PhotoID==id);
             return View(showphoto);
         }
         public ActionResult UploadPicture()
@@ -42,7 +43,7 @@ namespace MVCLabb.Controllers
         {
             file.SaveAs(
                 Path.Combine(Server.MapPath("~/Image"), file.FileName));
-            photos.Add(new Photo { PhotoName = file.FileName });
+            photos.Add(new Photo { PhotoID=Guid.NewGuid(), PhotoName = file.FileName });
             return View();
         }
         public ActionResult DeletePicture()
@@ -50,9 +51,9 @@ namespace MVCLabb.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DeletePicture(int pictureID)
+        public ActionResult DeletePicture(Guid pictureID)
         {
-
+            
             return View();
         }
     }
