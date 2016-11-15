@@ -3,10 +3,24 @@
     ViewBag.Title = "Gallery";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Gallery</h2>
 <p>Here are some photos</p>
+<div class="row">
+    @foreach (var photo in Model)
+    {
+        <div class="col-sm-3 col-md-4">
+            <div class="thumbnail">
+                <img src="/Image/@photo.PhotoName" />
+                <div class="caption">
+                    <h3>@photo.PhotoName</h3>
+                    @Html.ActionLink("Show Picture", "ShowImage", "Gallery", new { id = photo.PhotoID }, null)
+                </div>
+            </div>
+        </div>
 
-@foreach(var photo in Model)
-{
-    <img src="/Image/@photo.PhotoName"/>
-}
+        @*<img src="/Image/@photo.PhotoName"/>*@
+        <div>
+            @*@Html.ActionLink("Show Picture", "ShowImage","Gallery",new { id=photo.PhotoID},null)*@
+        </div>
+    }
+</div>

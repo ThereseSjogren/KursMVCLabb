@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVCLabb.Models;
+using System.IO;
 
 namespace MVCLabb.Controllers
 {
@@ -28,8 +29,11 @@ namespace MVCLabb.Controllers
             var showphoto = photos.ElementAt(id);
             return View(showphoto);
         }
-        public ActionResult UploadPicture()
+        
+        public ActionResult UploadPicture(Photo photo)
         {
+            //file.SaveAs(
+            //    Path.Combine(Server.MapPath("/Image"), file.FileName));
             return View();
         }
     }
