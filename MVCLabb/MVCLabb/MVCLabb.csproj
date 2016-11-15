@@ -246,6 +246,7 @@
     <Content Include="Views\Gallery\ShowImage.cshtml" />
     <Content Include="Views\ErrorPage\Error.cshtml" />
     <Content Include="Views\Gallery\UploadPicture.cshtml" />
+    <Content Include="Views\Gallery\DeletePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

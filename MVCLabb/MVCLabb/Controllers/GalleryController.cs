@@ -14,11 +14,15 @@ namespace MVCLabb.Controllers
         // GET: Gallery
         public GalleryController()
         {
-            photos.Add(new Photo { PhotoName = "Skimboard.jpg" });
-            photos.Add(new Photo { PhotoName = "SkimboardThree.jpg" });
-            photos.Add(new Photo { PhotoName = "SunsetSurf.jpg" });
-            photos.Add(new Photo { PhotoName = "surf.jpg" });
-            photos.Add(new Photo { PhotoName = "Water.jpg" });
+            if (!photos.Any())
+            {
+
+                photos.Add(new Photo { PhotoName = "Skimboard.jpg" });
+                photos.Add(new Photo { PhotoName = "SkimboardThree.jpg" });
+                photos.Add(new Photo { PhotoName = "SunsetSurf.jpg" });
+                photos.Add(new Photo { PhotoName = "surf.jpg" });
+                photos.Add(new Photo { PhotoName = "Water.jpg" }); 
+            }
         }
         public ActionResult Gallery()
         {
@@ -26,14 +30,29 @@ namespace MVCLabb.Controllers
         }
         public ActionResult ShowImage(int id)
         {
-            var showphoto = photos.ElementAt(id);
+            var showphoto =photos.ElementAt(id);
             return View(showphoto);
         }
-        
-        public ActionResult UploadPicture(Photo photo)
+        public ActionResult UploadPicture()
         {
-            //file.SaveAs(
-            //    Path.Combine(Server.MapPath("/Image"), file.FileName));
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UploadPicture(Photo photo,HttpPostedFileBase file)
+        {
+            file.SaveAs(
+                Path.Combine(Server.MapPath("~/Image"), file.FileName));
+            photos.Add(new Photo { PhotoName = file.FileName });
+            return View();
+        }
+        public ActionResult DeletePicture()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DeletePicture(int pictureID)
+        {
+
             return View();
         }
     }
