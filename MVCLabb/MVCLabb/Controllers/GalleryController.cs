@@ -46,15 +46,26 @@ namespace MVCLabb.Controllers
             photos.Add(new Photo { PhotoID=Guid.NewGuid(), PhotoName = file.FileName });
             return View();
         }
-        public ActionResult DeletePicture()
+        public ActionResult DeletePicture(Guid id)
         {
-            return View();
+            var photo = photos.FirstOrDefault(x => x.PhotoID == id);
+            return View(photo);
         }
         [HttpPost]
-        public ActionResult DeletePicture(Guid pictureID)
+        public ActionResult DeletePicture(Guid id,Photo photo)
         {
-            
-            return View();
+ 
+            var p = photos.FirstOrDefault(x => x.PhotoID == id); 
+            string fullPath = Request.MapPath("~/Image/"
+            + p.PhotoName);
+
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+                //Session["DeleteSuccess"] = "Yes";
+                photos.Remove(p);
+            }
+            return RedirectToAction("Gallery");
         }
     }
 }
