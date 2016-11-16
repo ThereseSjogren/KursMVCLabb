@@ -56,8 +56,7 @@ namespace MVCLabb.Controllers
         {
  
             var p = photos.FirstOrDefault(x => x.PhotoID == id); 
-            string fullPath = Request.MapPath("~/Image/"
-            + p.PhotoName);
+            string fullPath = Request.MapPath("~/Image/"+ p.PhotoName);
 
             if (System.IO.File.Exists(fullPath))
             {
