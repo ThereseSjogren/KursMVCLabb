@@ -41,6 +41,15 @@ namespace MVCLabb.Controllers
         [HttpPost]
         public ActionResult UploadPicture(Photo photo,HttpPostedFileBase file)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(photo);
+            }
+            if(file==null)
+            {
+                ModelState.AddModelError("error", "Ingen Bild!");
+                return View(photo);
+            }
             file.SaveAs(
                 Path.Combine(Server.MapPath("~/Image"), file.FileName));
             photos.Add(new Photo { PhotoID=Guid.NewGuid(), PhotoName = file.FileName });
