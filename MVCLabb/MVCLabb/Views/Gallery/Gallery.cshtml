@@ -1,6 +1,7 @@
 ﻿@model List<MVCLabb.Models.Photo>
 @{
     ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Gallery</h2>
@@ -19,7 +20,14 @@
                 </div>
             </div>
         </div>
-       
+        @section RecentUploadPicture{
+            <div>
+                <h2>Uploaded picture</h2>
+                @*Put the code for recentupploadpicture here*@
+
+            </div>
+        }
+
 
         @*<img src="/Image/@photo.PhotoName"/>*@
         <div>
