@@ -40,7 +40,7 @@ namespace MVCLabb.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult UploadPicture(Photo photo,HttpPostedFileBase file)
+        public ActionResult UploadPicture(string comment,HttpPostedFileBase file,Photo photo)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +53,7 @@ namespace MVCLabb.Controllers
             }
             file.SaveAs(
                 Path.Combine(Server.MapPath("~/Image"), file.FileName));
-            photos.Add(new Photo { PhotoID=Guid.NewGuid(), PhotoName = file.FileName, PhotoComment=photo.PhotoComment });
+            photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = file.FileName, PhotoComment = new List<Comments> { new Comments { CommentOnPicture = comment } } });
             return View();
         }
         public ActionResult DeletePicture(Guid id)
@@ -86,7 +86,7 @@ namespace MVCLabb.Controllers
         public ActionResult AddComment(Guid id,string photoComment)
         {
             var p = photos.FirstOrDefault(x => x.PhotoID == id);
-            p.PhotoComment= new List<Comments> { new Comments { CommentOnPicture = photoComment } };
+            p.PhotoComment.Add(new Comments { CommentOnPicture = photoComment } );
             return View(p);
         }
     }

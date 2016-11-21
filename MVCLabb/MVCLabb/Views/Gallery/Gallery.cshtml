@@ -17,12 +17,12 @@
                     <h4>PhotoID: @photo.PhotoID</h4>
                     <h4>PhotoName: @photo.PhotoName</h4>
                     Comments:
-                    
-                        <h4>@photo.PhotoComment</h4>
-                   
+                    @foreach (var item in photo.PhotoComment)
+                    {
+                        <h4>@item.CommentOnPicture</h4>
+                    }
                         
-                    
-                    
+                   
                     @Html.ActionLink("Show Picture", "ShowImage", "Gallery", new { id = photo.PhotoID }, null)
                     @Html.ActionLink("Delete Picture", "DeletePicture", "Gallery", new { id = photo.PhotoID }, null)
                     @Html.ActionLink("Add Comment", "AddComment", "Gallery", new { id = photo.PhotoID }, null)
@@ -38,3 +38,14 @@
         </div>
     }
 </div>
+
+@section latest{
+    @foreach (Photo result in Model)
+    {
+        if (Model.IndexOf(result) == Model.Count - 1)
+        {
+            // this is the last item
+            <img src="/Image/@result.PhotoName" />
+        }
+    }
+    }
