@@ -178,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Views\ErrorPage\Error.cshtml" />
     <Content Include="Views\Gallery\UploadPicture.cshtml" />
     <Content Include="Views\Gallery\DeletePicture.cshtml" />
+    <Content Include="Views\Gallery\AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

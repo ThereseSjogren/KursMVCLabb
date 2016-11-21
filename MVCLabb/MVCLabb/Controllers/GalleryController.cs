@@ -11,17 +11,18 @@ namespace MVCLabb.Controllers
     public class GalleryController : Controller
     {
        static List<Photo> photos = new List<Photo>();
+        
         // GET: Gallery
         public GalleryController()
         {
             if (!photos.Any())
             {
 
-                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Skimboard.jpg" });
-                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "SkimboardThree.jpg" });
-                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "SunsetSurf.jpg" });
-                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "surf.jpg" });
-                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Water.jpg" }); 
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Skimboard.jpg", PhotoComment =new List<Comments> { new Comments { CommentOnPicture = "Skimboarding on the ocean" } } });
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "SkimboardThree.jpg", PhotoComment = new List<Comments> { new Comments { CommentOnPicture = "Skimboarding of three" } } }); 
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "SunsetSurf.jpg", PhotoComment = new List<Comments> { new Comments { CommentOnPicture = "Surfing in the sunset" } } }); 
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "surf.jpg", PhotoComment = new List<Comments> { new Comments { CommentOnPicture = "Surfing on the ocean" } } }); 
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Water.jpg", PhotoComment = new List<Comments> { new Comments { CommentOnPicture = "Fine ocean" } } });  
             }
         }
         public ActionResult Gallery()
@@ -52,7 +53,7 @@ namespace MVCLabb.Controllers
             }
             file.SaveAs(
                 Path.Combine(Server.MapPath("~/Image"), file.FileName));
-            photos.Add(new Photo { PhotoID=Guid.NewGuid(), PhotoName = file.FileName });
+            photos.Add(new Photo { PhotoID=Guid.NewGuid(), PhotoName = file.FileName, PhotoComment=photo.PhotoComment });
             return View();
         }
         public ActionResult DeletePicture(Guid id)
@@ -74,6 +75,19 @@ namespace MVCLabb.Controllers
                 photos.Remove(p);
             }
             return RedirectToAction("Gallery");
+        }
+        public ActionResult AddComment(Guid id)
+        {
+            var p = photos.FirstOrDefault(x => x.PhotoID == id);
+            return View(p);
+        }
+
+       [HttpPost]
+        public ActionResult AddComment(Guid id,string photoComment)
+        {
+            var p = photos.FirstOrDefault(x => x.PhotoID == id);
+            p.PhotoComment= new List<Comments> { new Comments { CommentOnPicture = photoComment } };
+            return View(p);
         }
     }
 }

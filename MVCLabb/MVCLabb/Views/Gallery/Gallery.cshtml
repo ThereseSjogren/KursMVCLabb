@@ -13,20 +13,22 @@
             <div class="thumbnail">
                 <img src="/Image/@photo.PhotoName" />
                 <div class="caption">
-                    <h3>@photo.PhotoID</h3>
-                    <h3>@photo.PhotoName</h3>
+                    <h4>PhotoID: @photo.PhotoID</h4>
+                    <h4>PhotoName: @photo.PhotoName</h4>
+                    Comments:
+                    
+                        <h4>@photo.PhotoComment</h4>
+                   
+                        
+                    
+                    
                     @Html.ActionLink("Show Picture", "ShowImage", "Gallery", new { id = photo.PhotoID }, null)
                     @Html.ActionLink("Delete Picture", "DeletePicture", "Gallery", new { id = photo.PhotoID }, null)
+                    @Html.ActionLink("Add Comment", "AddComment", "Gallery", new { id = photo.PhotoID }, null)
                 </div>
             </div>
         </div>
-        @section RecentUploadPicture{
-            <div>
-                <h2>Uploaded picture</h2>
-                @*Put the code for recentupploadpicture here*@
 
-            </div>
-        }
 
 
         @*<img src="/Image/@photo.PhotoName"/>*@
