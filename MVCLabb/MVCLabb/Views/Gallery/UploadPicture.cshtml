@@ -4,11 +4,12 @@
 }
 
 <h2>UploadPicture</h2>
-@using (Html.BeginForm( "UploadPicture",
-                        "Gallery",
-                        FormMethod.Post,
-                        new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UploadPicture",
+                                    "Gallery",
+                                    FormMethod.Post,
+                                    new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
     @*<input type="file" name="file" id="file" />
             <input type="submit" name="Create" />
         }*@

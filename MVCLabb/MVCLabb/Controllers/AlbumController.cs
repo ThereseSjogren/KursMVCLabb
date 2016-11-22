@@ -9,9 +9,15 @@ namespace MVCLabb.Controllers
 {
     public class AlbumController : Controller
     {
+        public static List<Album> albums = new List<Album>();
         // GET: Album
         public ActionResult Index()
         {
+            return View(albums);
+        }
+        public ActionResult CreateAlbum(Album album)
+        {
+            albums.Add(album);
             return View();
         }
     }
