@@ -1,0 +1,15 @@
+﻿@model MVCLabb.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<h3>@Model.AlbumName</h3>
+@foreach (var item in Model.Photos)
+{
+    <img src="/Image/@item.PhotoName" />
+}
+
+
+

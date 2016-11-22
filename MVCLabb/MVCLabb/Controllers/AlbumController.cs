@@ -15,8 +15,8 @@ namespace MVCLabb.Controllers
         {
             if(!albums.Any())
             {
-                albums.Add(new Album { AlbumID=Guid.NewGuid(), AlbumName="WaterSports", Photos= new List<Photo> { new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Skimboard.jpg" } } });
-                albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "Boards", Photos = new List<Photo> { new Photo { PhotoID = Guid.NewGuid(), PhotoName = "Skimboard.jpg" } } });
+                albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "WaterSports", Photos = new List<Photo>()});
+                albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "Boards", Photos = new List<Photo> ()});
             }
             
         }
@@ -39,7 +39,17 @@ namespace MVCLabb.Controllers
         [HttpPost]
         public ActionResult AddPhotoToAlbum(IEnumerable<Guid>photos,Guid albumID)
         {
+            var album = albums.FirstOrDefault(x => x.AlbumID == albumID);
+            foreach (var item in photos)
+            {
+                album.Photos.Add( GalleryController.photos.FirstOrDefault(x=>x.PhotoID==item));
+            }
             return Content("OK!");
+        }
+        public ActionResult Details(Guid id)
+        {
+            var showalbum = albums.FirstOrDefault(x => x.AlbumID == id);
+            return View(showalbum);
         }
 
     }

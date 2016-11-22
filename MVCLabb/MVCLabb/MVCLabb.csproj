@@ -258,6 +258,7 @@
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Album\CreateAlbum.cshtml" />
     <Content Include="Views\Album\AddPhotoToAlbum.cshtml" />
+    <Content Include="Views\Album\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
