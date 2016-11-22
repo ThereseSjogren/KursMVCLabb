@@ -11,6 +11,6 @@ namespace MVCLabb.Models
         public Guid PhotoID { get; set; }
         public string PhotoName { get; set; }
         public List<Comments> PhotoComment { get; set; }
-        
+        public Guid AlbumID { get; set; }
     }
 }

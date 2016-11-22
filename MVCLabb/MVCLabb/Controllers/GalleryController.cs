@@ -10,7 +10,7 @@ namespace MVCLabb.Controllers
 {
     public class GalleryController : Controller
     {
-       static List<Photo> photos = new List<Photo>();
+      public static List<Photo> photos = new List<Photo>();
         
         // GET: Gallery
         public GalleryController()
@@ -88,6 +88,7 @@ namespace MVCLabb.Controllers
             var p = photos.FirstOrDefault(x => x.PhotoID == id);
             p.PhotoComment.Add(new Comments { CommentOnPicture = photoComment } );
             return View(p);
+            
         }
     }
 }
