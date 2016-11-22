@@ -15,8 +15,8 @@ namespace MVCLabb.Controllers
         {
             if(!albums.Any())
             {
-                albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "WaterSports", Photos = new List<Photo>()});
-                albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "Boards", Photos = new List<Photo> ()});
+                albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "WaterSports", Photos = new List<Photo>(),AlbumComment = new List<Comments> { new Comments { CommentOnAlbum = "Photos with different watersports" } } });
+                albums.Add(new Album { AlbumID = Guid.NewGuid(), AlbumName = "Boards", Photos = new List<Photo> (),AlbumComment = new List<Comments> { new Comments { CommentOnAlbum = "Photos on different kind of boards" } } });
             }
             
         }
@@ -50,6 +50,18 @@ namespace MVCLabb.Controllers
         {
             var showalbum = albums.FirstOrDefault(x => x.AlbumID == id);
             return View(showalbum);
+        }
+        public ActionResult Edit(Guid id)
+        {
+            var albumcomment = albums.FirstOrDefault(x => x.AlbumID == id);
+            return View(albumcomment);
+        }
+        [HttpPost]
+        public ActionResult Edit(Guid id,string albumComment)
+        {
+            var albumcomment = albums.FirstOrDefault(x => x.AlbumID == id);
+            albumcomment.AlbumComment.Add(new Comments { CommentOnAlbum = albumComment });
+            return View();
         }
 
     }

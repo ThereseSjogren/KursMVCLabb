@@ -23,9 +23,15 @@
             @Html.DisplayFor(modelItem => album.AlbumName)
         </td>
         <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id= album.AlbumID }) |*@
+            @Html.ActionLink("Edit", "Edit", new { id= album.AlbumID }) |
             @Html.ActionLink("Details", "Details", new { id= album.AlbumID }) |
             @Html.ActionLink("Delete", "Delete", new { id= album.AlbumID })
+        </td>
+        <td>
+            @foreach (var item in album.AlbumComment)
+            {
+                <h4>@item.CommentOnAlbum</h4>
+            }
         </td>
     </tr>
 }

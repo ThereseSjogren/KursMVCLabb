@@ -9,6 +9,7 @@ namespace MVCLabb.Models
     {
         public Guid AlbumID { get; set; }
         public string AlbumName { get; set; }
+        public List<Comments> AlbumComment { get; set; }
         public List<Photo> Photos { get; set; }
 
     }

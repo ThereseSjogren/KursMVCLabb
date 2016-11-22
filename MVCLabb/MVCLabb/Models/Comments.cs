@@ -8,5 +8,6 @@ namespace MVCLabb.Models
     public class Comments
     {
         public string CommentOnPicture { get; set; }
+        public string CommentOnAlbum { get; set; }
     }
 }
