@@ -10,11 +10,11 @@
 <div class="row">
     @foreach (var photo in Model)
     {
-        <div class="col-sm-3 col-md-4">
+        <div class="col-sm-3 col-md-2">
             <div class="thumbnail">
                 <img src="/Image/@photo.PhotoName" />
                 <div class="caption">
-                    <h4>PhotoID: @photo.PhotoID</h4>
+                    <p>PhotoID: @photo.PhotoID</p>
                     <h4>PhotoName: @photo.PhotoName</h4>
                     Comments:
                     @foreach (var item in photo.PhotoComment)

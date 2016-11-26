@@ -40,20 +40,24 @@ namespace MVCLabb.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult UploadPicture(string comment,HttpPostedFileBase file,Photo photo)
+        public ActionResult UploadPicture(string comment,HttpPostedFileBase[] files,Photo photo)
         {
             if (!ModelState.IsValid)
             {
                 return View(photo);
             }
-            if(file==null)
+            if(files==null)
             {
                 ModelState.AddModelError("error", "Ingen Bild!");
                 return View(photo);
             }
-            file.SaveAs(
+            foreach (var file in files)
+            {
+                file.SaveAs(
                 Path.Combine(Server.MapPath("~/Image"), file.FileName));
-            photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = file.FileName, PhotoComment = new List<Comments> { new Comments { CommentOnPicture = comment } } });
+                photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = file.FileName, PhotoComment = new List<Comments> { new Comments { CommentOnPicture = comment } } });
+            }
+            
             return View();
         }
         public ActionResult DeletePicture(Guid id)
