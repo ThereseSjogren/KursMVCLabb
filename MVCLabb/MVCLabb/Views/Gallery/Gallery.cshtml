@@ -17,11 +17,12 @@
                     <p>PhotoID: @photo.PhotoID</p>
                     <h4>PhotoName: @photo.PhotoName</h4>
                     Comments:
-                    @foreach (var item in photo.PhotoComment)
-                    {
-                        <h4>@item.CommentOnPicture</h4>
-                    }
-                        
+                    <div id="comments">
+                        @foreach (var item in photo.PhotoComment)
+                        {
+                            <p>@item.CommentOnPicture</p>
+                        }
+                    </div>    
                    
                     @Html.ActionLink("Show Picture", "ShowImage", "Gallery", new { id = photo.PhotoID }, null)
                     @Html.ActionLink("Delete Picture", "DeletePicture", "Gallery", new { id = photo.PhotoID }, null)

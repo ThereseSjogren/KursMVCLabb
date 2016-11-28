@@ -40,9 +40,15 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-    @*<script src="~/Scripts/jquery-3.1.1.min.js"></script>*@
+    @*<script src="~/Scripts/MyJavaScriptFile.js"></script>*@
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquery.growl.js"></script>
+    <link href="~/Content/jquery.growl.css" rel="stylesheet" type="text/css"/>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @RenderSection("script", required: false)
 </body>
 </html>
