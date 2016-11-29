@@ -24,5 +24,39 @@ namespace MVCLabbAjax.Controllers
         {
             return View(albums);
         }
+        public ActionResult ShowAlbum(Guid id)
+        {
+            var showalbum = albums.FirstOrDefault(x => x.AlbumID == id);
+            return PartialView("ShowAlbum",showalbum);
+        }
+        public ActionResult AddComment(Guid id)
+        {
+            var p = albums.FirstOrDefault(x => x.AlbumID == id);
+            return PartialView("AddComment", p);
+        }
+        [HttpPost]
+        public ActionResult AddComment(Guid id, string albumComment)
+        {
+            var p = albums.FirstOrDefault(x => x.AlbumID == id);
+            p.AlbumComment.Add(new Comments { CommentOnAlbum = albumComment });
+            return PartialView("Index", albums);
+        }
+        public ActionResult AddPhotoToAlbum()
+        {
+            var model = new ViewAlbumPhoto();
+            model.Photos = GalleryController.photos;
+            model.Albums = AlbumController.albums;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddPhotoToAlbum(IEnumerable<Guid> photos, Guid albumID)
+        {
+            var album = albums.FirstOrDefault(x => x.AlbumID == albumID);
+            foreach (var item in photos)
+            {
+                album.Photos.Add(GalleryController.photos.FirstOrDefault(x => x.PhotoID == item));
+            }
+            return Content("OK!");
+        }
     }
 }
