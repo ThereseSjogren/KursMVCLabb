@@ -4,8 +4,8 @@
     var ajaxOptions = new AjaxOptions
     {
         HttpMethod = "POST",
-        InsertionMode = InsertionMode.InsertAfter,
-        UpdateTargetId = "Addcomment"
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "content"
     };
 }
 @using (Ajax.BeginForm("AddComment", ajaxOptions))
@@ -14,7 +14,5 @@
     <input type="submit" value="Add Comment" />
 }
 
-<div id="Addcomment">
-    @{Html.RenderAction("Index");}
-</div>
+
 

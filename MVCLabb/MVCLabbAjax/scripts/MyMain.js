@@ -1,6 +1,7 @@
 ﻿//Upload picture
 $(document).ready(function () {
-    var form = $("form");
+    var form = $("#uploadpicture");
+   
     form.submit(function (e) {
         e.preventDefault();
         $.ajax({
