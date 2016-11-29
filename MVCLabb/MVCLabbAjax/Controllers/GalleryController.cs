@@ -25,7 +25,19 @@ namespace MVCLabbAjax.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            return View(photos);
+        }
+        public ActionResult AddComment(Guid id)
+        {
+            var p = photos.FirstOrDefault(x => x.PhotoID == id);
+            return PartialView("AddComment",p);
+        }
+        [HttpPost]
+        public ActionResult AddComment(Guid id, string photoComment)
+        {
+            var p = photos.FirstOrDefault(x => x.PhotoID == id);
+            p.PhotoComment.Add(new Comments { CommentOnPicture = photoComment });
+            return PartialView("Index",photos);
         }
     }
 }

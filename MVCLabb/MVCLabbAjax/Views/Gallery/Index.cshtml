@@ -1,0 +1,33 @@
+﻿@model List<MVCLabbAjax.Models.Photo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    var ajaxListAllPhoto = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result"
+    };
+    var ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result"
+    };
+}
+<h2>Index</h2>
+@foreach (var photo in Model)
+{
+   <div>
+       <img src="/Image/@photo.PhotoName" />
+   </div>
+   foreach (var comment in photo.PhotoComment)
+   {
+       @comment.CommentOnPicture
+   }
+    @Ajax.ActionLink($"Add Comment {photo.PhotoName}","AddComment",new { id=photo.PhotoID}, ajaxListAllPhoto)
+}
