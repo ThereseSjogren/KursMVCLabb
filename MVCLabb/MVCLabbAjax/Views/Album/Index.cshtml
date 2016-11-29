@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVCLabbAjax.Models.Album>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    var ajaxListAllAlbum = new AjaxOptions
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result"
+    };
+    var ajaxOption = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result"
+    };
+}
+
+<h2>Index</h2>
+<table class="table">
+    @foreach (var album in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => album.AlbumName)
+            </td>
+            <td>
+                @Ajax.ActionLink("Edit Album", "Edit", new { id = album.AlbumID }, ajaxListAllAlbum) 
+                @Ajax.ActionLink("Details Album", "Details", new { id = album.AlbumID }, ajaxListAllAlbum) 
+                @Ajax.ActionLink("Delete Album", "Delete", new { id = album.AlbumID }, ajaxOption)
+            </td>
+            <td>
+                @foreach (var item in album.AlbumComment)
+                {
+                    <h4>@item.CommentOnAlbum</h4>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
