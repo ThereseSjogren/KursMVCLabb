@@ -30,6 +30,19 @@ namespace MVCLabbAjax.Controllers
             return View(albumrepo.GetAllAlbums().Select(x=>AlbumModelMapper.ModelToEntity(x)).ToList());
             //return View(albums);
         }
+        public ActionResult AddNewAlbum()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddNewAlbum(Album newalbum)
+        {
+            newalbum.AlbumID = Guid.NewGuid();
+            newalbum.AlbumName = newalbum.AlbumName;
+            var albums = AlbumModelMapper.EntityToModel(newalbum);
+            albumrepo.AddNewAlbum(albums);
+            return View(newalbum);
+        }
         public ActionResult ShowAlbum(Guid id)
         {
             var showalbum = albumrepo.ShowAlbum(id);

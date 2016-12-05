@@ -16,7 +16,7 @@ namespace MVCLabbAjax.Mapping
             AlbumEntityModel entity = new AlbumEntityModel();
             entity.AlbumId = albumModel.AlbumID;
             entity.AlbumName = albumModel.AlbumName;
-            entity.Photo = MapPhotoEntityModel(albumModel.Photos);
+            //entity.Photo = MapPhotoEntityModel(albumModel.Photos);
             entity.Comment = MapCommentsEntityModel(albumModel.AlbumComment);
             return entity;
         }
@@ -25,7 +25,7 @@ namespace MVCLabbAjax.Mapping
             var model = new Album();
             model.AlbumID = entityModel.AlbumId;
             model.AlbumName = entityModel.AlbumName;
-            model.Photos = MapPhotoModel(entityModel.Photo);
+            //model.Photos = MapPhotoModel(entityModel.Photo);
             model.AlbumComment = MapCommentsModel(entityModel.Comment);
             return model;
         }

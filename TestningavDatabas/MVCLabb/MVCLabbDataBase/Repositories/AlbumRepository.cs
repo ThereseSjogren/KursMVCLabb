@@ -25,10 +25,10 @@ namespace MVCLabbData.Repositories
             using (var context = new MVCLabbRepositoryDbContext())
             {
                 AlbumEntityModel album = new AlbumEntityModel();
-
+                album.AlbumId = newalbum.AlbumId;
                 album.AlbumName = newalbum.AlbumName;
                 album.Comment = newalbum.Comment;
-                album.Photo = newalbum.Photo;
+                //album.Photo = newalbum.Photo;
                 context.AlbumEntityModels.Add(album);
                 context.SaveChanges();
             }
@@ -47,7 +47,7 @@ namespace MVCLabbData.Repositories
             using (var context = new MVCLabbRepositoryDbContext())
             {
                 var albumtocomment=context.AlbumEntityModels.FirstOrDefault(x => x.AlbumId == id);
-                albumtocomment.Comment.Add( new CommentsEntityModel { CommentAlbum=albumComment});
+                albumtocomment.Comment.Add( new CommentsEntityModel {Id=Guid.NewGuid(), CommentAlbum=albumComment});
                 return albumtocomment;
             }
         }
