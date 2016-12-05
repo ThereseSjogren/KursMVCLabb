@@ -29,6 +29,10 @@ namespace MVCLabbAjax.Controllers
         {
             return View(photos);
         }
+        public ActionResult IndexPartial()
+        {
+            return PartialView("Index", photos);
+        }
         public ActionResult AddComment(Guid id)
         {
             var p = photos.FirstOrDefault(x => x.PhotoID == id);

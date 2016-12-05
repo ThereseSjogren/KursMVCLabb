@@ -1,0 +1,18 @@
+﻿@model MVCLabbAjax.Models.Album
+
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "content"
+    };
+}
+@using (Ajax.BeginForm("AddComment", ajaxOptions))
+{
+    <input type="text" name="albumComment" />
+    <input type="submit" value="Add Comment" />
+}
+
+
+
