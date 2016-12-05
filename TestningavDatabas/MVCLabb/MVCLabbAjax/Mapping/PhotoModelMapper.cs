@@ -16,7 +16,7 @@ namespace MVCLabbAjax.Mapping
             entity.PhotoId = photoModel.PhotoID;
             entity.PhotoName = photoModel.PhotoName;
             entity.Comment = MapCommentsEntityModel(photoModel.PhotoComment);
-            entity.AlbumID = photoModel.AlbumID;
+            //entity.AlbumID = photoModel.AlbumID;
             return entity;
         }
         public static Photo ModelToEntity(PhotoEntityModel photoentity)
@@ -25,7 +25,7 @@ namespace MVCLabbAjax.Mapping
             model.PhotoID = photoentity.PhotoId;
             model.PhotoName = photoentity.PhotoName;
             model.PhotoComment = MapCommentsModel(photoentity.Comment);
-            model.AlbumID = photoentity.AlbumID;
+            //model.AlbumID = photoentity.AlbumID;
             return model;
         }
         public static ICollection<CommentsEntityModel> MapCommentsEntityModel(ICollection<Comments> comments)
@@ -39,8 +39,8 @@ namespace MVCLabbAjax.Mapping
             return new CommentsEntityModel
             {
                 Id = comments.Id,
-                CommentPhoto = comments.CommentOnPicture,
-                CommentAlbum = comments.CommentOnAlbum
+                CommentPhoto = comments.CommentOnPicture
+                //CommentAlbum = comments.CommentOnAlbum
             };
         }
         public static ICollection<Comments> MapCommentsModel(ICollection<CommentsEntityModel> comments)

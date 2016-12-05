@@ -10,6 +10,6 @@ namespace MVCLabbAjax.Models
         public Guid PhotoID { get; set; }
         public string PhotoName { get; set; }
         public ICollection<Comments> PhotoComment { get; set; }
-        public Guid AlbumID { get; set; }
+        //public Guid AlbumID { get; set; }
     }
 }

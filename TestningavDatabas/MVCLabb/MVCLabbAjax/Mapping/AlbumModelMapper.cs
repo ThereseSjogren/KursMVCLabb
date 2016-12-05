@@ -72,7 +72,7 @@ namespace MVCLabbAjax.Mapping
                 PhotoID=photo.PhotoId,
                 PhotoName=photo.PhotoName,
                 PhotoComment=PhotoModelMapper.MapCommentsModel(photo.Comment),
-                AlbumID=photo.AlbumID
+                //AlbumID=photo.AlbumID
             };
         }
         public static ICollection<PhotoEntityModel> MapPhotoEntityModel(ICollection<Photo> comments)
@@ -88,7 +88,7 @@ namespace MVCLabbAjax.Mapping
                 PhotoId=photo.PhotoID,
                 PhotoName=photo.PhotoName,
                 Comment=PhotoModelMapper.MapCommentsEntityModel(photo.PhotoComment),
-                AlbumID=photo.AlbumID
+                //AlbumID=photo.AlbumID
             };
         }
     }

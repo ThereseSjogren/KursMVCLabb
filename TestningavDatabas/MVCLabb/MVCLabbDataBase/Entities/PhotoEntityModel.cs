@@ -17,6 +17,6 @@ namespace MVCLabbData.Entities
         public Guid PhotoId { get; set; }
         public string PhotoName { get; set; }
         public virtual ICollection<CommentsEntityModel> Comment { get; set; }
-        public Guid AlbumID { get; set; }
+        //public Guid AlbumID { get; set; }
     }
 }

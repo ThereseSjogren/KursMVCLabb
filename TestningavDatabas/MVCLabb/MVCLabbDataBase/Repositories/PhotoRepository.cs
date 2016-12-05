@@ -25,6 +25,7 @@ namespace MVCLabbData.Repositories
             using (var context = new MVCLabbRepositoryDbContext())
             {
                 PhotoEntityModel photo = new PhotoEntityModel();
+                photo.PhotoId = newphoto.PhotoId;
                 photo.PhotoName = newphoto.PhotoName;
                 photo.Comment = newphoto.Comment;
                 context.PhotoEntityModels.Add(photo);

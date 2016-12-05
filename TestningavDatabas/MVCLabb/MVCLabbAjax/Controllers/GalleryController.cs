@@ -95,6 +95,9 @@ namespace MVCLabbAjax.Controllers
             {
                 file.SaveAs(
                 Path.Combine(Server.MapPath("~/Image"), file.FileName));
+                photo.PhotoID = Guid.NewGuid();
+                photo.PhotoName = file.FileName;
+                photo.PhotoComment = new List<Comments> { new Comments {Id=Guid.NewGuid(), CommentOnPicture = comment } };             
                 var photos = PhotoModelMapper.EntityToModel(photo);
                 photoRepo.AddPhoto(photos);
                 //photos.Add(new Photo { PhotoID = Guid.NewGuid(), PhotoName = file.FileName,

@@ -27,7 +27,7 @@ namespace MVCLabbAjax.Controllers
         //}
         public ActionResult Index()
         {
-            return View(albumrepo.GetAllAlbums());
+            return View(albumrepo.GetAllAlbums().Select(x=>AlbumModelMapper.ModelToEntity(x)).ToList());
             //return View(albums);
         }
         public ActionResult ShowAlbum(Guid id)

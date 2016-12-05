@@ -5,6 +5,7 @@ namespace MVCLabbDataBase.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+
     internal sealed class Configuration : DbMigrationsConfiguration<MVCLabbData.MVCLabbRepositoryDbContext>
     {
         public Configuration()
@@ -26,6 +27,7 @@ namespace MVCLabbDataBase.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            
         }
     }
 }
