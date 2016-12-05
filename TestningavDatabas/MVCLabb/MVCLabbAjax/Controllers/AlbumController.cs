@@ -35,10 +35,11 @@ namespace MVCLabbAjax.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddNewAlbum(Album newalbum)
+        public ActionResult AddNewAlbum(Album newalbum,string albumcomment)
         {
             newalbum.AlbumID = Guid.NewGuid();
             newalbum.AlbumName = newalbum.AlbumName;
+            newalbum.AlbumComment = new List<Comments> { new Comments { Id = Guid.NewGuid(), CommentOnAlbum = albumcomment } };
             var albums = AlbumModelMapper.EntityToModel(newalbum);
             albumrepo.AddNewAlbum(albums);
             return View(newalbum);

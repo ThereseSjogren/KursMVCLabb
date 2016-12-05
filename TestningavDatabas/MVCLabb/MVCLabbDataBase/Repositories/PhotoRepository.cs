@@ -41,6 +41,14 @@ namespace MVCLabbData.Repositories
                 context.SaveChanges();
             }
         }
+        //Ta bort kommentaren innan man tar bort bilden
+        public void DeleteComment(Guid id)
+        {
+            using (var context = new MVCLabbRepositoryDbContext())
+            {
+               
+            }
+        }
         public PhotoEntityModel GetPhoto(Guid id)
         {
             using (var context = new MVCLabbRepositoryDbContext())
