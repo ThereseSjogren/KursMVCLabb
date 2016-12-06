@@ -53,7 +53,7 @@ namespace MVCLabbData.Repositories
         {
             using (var context = new MVCLabbRepositoryDbContext())
             {
-                var phototocomment = context.PhotoEntityModels.FirstOrDefault(x => x.PhotoId == id);
+                var phototocomment = context.PhotoEntityModels.Include("Comment").FirstOrDefault(x => x.PhotoId == id);
                 phototocomment.Comment.Add(new CommentsEntityModel { CommentPhoto = photoComment });
                 return phototocomment;
             }

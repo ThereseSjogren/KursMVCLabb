@@ -37,7 +37,7 @@ namespace MVCLabbData.Repositories
         {
             using (var context = new MVCLabbRepositoryDbContext())
             {
-                return context.AlbumEntityModels.FirstOrDefault(x => x.AlbumId == id);
+                return context.AlbumEntityModels.Include("Comment").Include("Photo").FirstOrDefault(x => x.AlbumId == id);
 
             }
                 
@@ -46,7 +46,7 @@ namespace MVCLabbData.Repositories
         {
             using (var context = new MVCLabbRepositoryDbContext())
             {
-                var albumtocomment=context.AlbumEntityModels.FirstOrDefault(x => x.AlbumId == id);
+                var albumtocomment=context.AlbumEntityModels.Include("Comment").FirstOrDefault(x => x.AlbumId == id);
                 albumtocomment.Comment.Add( new CommentsEntityModel {Id=Guid.NewGuid(), CommentAlbum=albumComment});
                 return albumtocomment;
             }
