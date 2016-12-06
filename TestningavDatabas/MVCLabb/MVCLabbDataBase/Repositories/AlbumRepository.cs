@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVCLabbData.Entities;
+using System.Data.Entity.Migrations;
 
 namespace MVCLabbData.Repositories
 {
@@ -30,6 +31,7 @@ namespace MVCLabbData.Repositories
                 album.Comment = newalbum.Comment;
                 //album.Photo = newalbum.Photo;
                 context.AlbumEntityModels.Add(album);
+                context.AlbumEntityModels.AddOrUpdate(album);
                 context.SaveChanges();
             }
         }
@@ -48,6 +50,8 @@ namespace MVCLabbData.Repositories
             {
                 var albumtocomment=context.AlbumEntityModels.Include("Comment").FirstOrDefault(x => x.AlbumId == id);
                 albumtocomment.Comment.Add( new CommentsEntityModel {Id=Guid.NewGuid(), CommentAlbum=albumComment});
+                context.AlbumEntityModels.AddOrUpdate(albumtocomment);
+                context.SaveChanges();
                 return albumtocomment;
             }
         }
@@ -60,6 +64,8 @@ namespace MVCLabbData.Repositories
                 {
                     albumToAddIn.Photo.Add(context.PhotoEntityModels.FirstOrDefault(x => x.PhotoId == item));
                 }
+                context.AlbumEntityModels.AddOrUpdate(albumToAddIn);
+                context.SaveChanges();
             }
         }
     }

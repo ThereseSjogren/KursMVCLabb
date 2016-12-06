@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MVCLabbData.Entities;
+using System.Data.Entity.Migrations;
 
 namespace MVCLabbData.Repositories
 {
@@ -15,6 +16,7 @@ namespace MVCLabbData.Repositories
             {
                 var photoentity = context.PhotoEntityModels.FirstOrDefault(p => p.PhotoId == photoid);
                 photoentity.Comment.Add(newphotoComment);
+                context.PhotoEntityModels.AddOrUpdate(photoentity);
                 context.SaveChanges();
             }
         }
@@ -24,6 +26,7 @@ namespace MVCLabbData.Repositories
             {
                 var albumentity = context.AlbumEntityModels.FirstOrDefault(a => a.AlbumId == albumid);
                 albumentity.Comment.Add(newalbumCommet);
+                context.AlbumEntityModels.AddOrUpdate(albumentity);
                 context.SaveChanges();
             }
         }

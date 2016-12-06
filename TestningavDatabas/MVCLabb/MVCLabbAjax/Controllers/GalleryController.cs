@@ -33,10 +33,10 @@ namespace MVCLabbAjax.Controllers
         {
             return View(photoRepo.GetAllPhoto().Select(x=>PhotoModelMapper.ModelToEntity(x)).ToList());
         }
-        public ActionResult IndexPartial()
+        public ActionResult IndexPartial(Photo photo)
         {
-            var photos = photoRepo.GetAllPhoto().Select(x => PhotoModelMapper.ModelToEntity(x)).ToList();
-            return PartialView("Index", photos);
+            //var photos = photoRepo.GetAllPhoto().Select(x => PhotoModelMapper.ModelToEntity(x)).ToList();
+            return PartialView(photo);
         }
         public ActionResult AddComment(Guid id)
         {
@@ -51,7 +51,7 @@ namespace MVCLabbAjax.Controllers
             //p.PhotoComment.Add(new Comments { CommentOnPicture = photoComment });
             var photo = photoRepo.AddCommentToPhoto(id, photoComment);
             var photos = PhotoModelMapper.ModelToEntity(photo);
-            return PartialView("Index",photos);
+            return PartialView("IndexPartial", photos);
         }
         public ActionResult ShowImage(Guid id)
         {

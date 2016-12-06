@@ -30,6 +30,10 @@ namespace MVCLabbAjax.Controllers
             return View(albumrepo.GetAllAlbums().Select(x=>AlbumModelMapper.ModelToEntity(x)).ToList());
             //return View(albums);
         }
+        public ActionResult IndexPartial(Album album)
+        {
+            return PartialView(album);
+        }
         public ActionResult AddNewAlbum()
         {
             return View();
@@ -63,7 +67,7 @@ namespace MVCLabbAjax.Controllers
             //p.AlbumComment.Add(new Comments { CommentOnAlbum = albumComment });
             var album = albumrepo.AddCommentToAlbum(id, albumComment);
             var albums = AlbumModelMapper.ModelToEntity(album);
-            return PartialView("Index", albums);
+            return PartialView("IndexPartial", albums);
         }
         public ActionResult AddPhotoToAlbum()
         {
