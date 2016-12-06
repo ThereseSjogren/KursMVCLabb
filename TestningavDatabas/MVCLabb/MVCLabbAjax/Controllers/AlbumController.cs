@@ -47,19 +47,22 @@ namespace MVCLabbAjax.Controllers
         public ActionResult ShowAlbum(Guid id)
         {
             var showalbum = albumrepo.ShowAlbum(id);
-            return PartialView("ShowAlbum",showalbum);
+            var show = AlbumModelMapper.ModelToEntity(showalbum);
+            return PartialView("ShowAlbum", show);
         }
         public ActionResult AddComment(Guid id)
         {
             var p = albumrepo.ShowAlbum(id);
-            return PartialView("AddComment", p);
+            var addcomment = AlbumModelMapper.ModelToEntity(p);
+            return PartialView("AddComment", addcomment);
         }
         [HttpPost]
         public ActionResult AddComment(Guid id, string albumComment)
         {
             //var p = albums.FirstOrDefault(x => x.AlbumID == id);
             //p.AlbumComment.Add(new Comments { CommentOnAlbum = albumComment });
-            var albums = albumrepo.AddCommentToAlbum(id, albumComment);
+            var album = albumrepo.AddCommentToAlbum(id, albumComment);
+            var albums = AlbumModelMapper.ModelToEntity(album);
             return PartialView("Index", albums);
         }
         public ActionResult AddPhotoToAlbum()

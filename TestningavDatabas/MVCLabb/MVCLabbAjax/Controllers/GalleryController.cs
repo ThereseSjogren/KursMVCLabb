@@ -35,12 +35,13 @@ namespace MVCLabbAjax.Controllers
         }
         public ActionResult IndexPartial()
         {
-            var photos = photoRepo.GetAllPhoto();
+            var photos = photoRepo.GetAllPhoto().Select(x => PhotoModelMapper.ModelToEntity(x)).ToList();
             return PartialView("Index", photos);
         }
         public ActionResult AddComment(Guid id)
         {
-            var p = photoRepo.GetPhoto(id);
+            var photo = photoRepo.GetPhoto(id);
+            var p = PhotoModelMapper.ModelToEntity(photo);
             return PartialView("AddComment",p);
         }
         [HttpPost]
@@ -48,13 +49,15 @@ namespace MVCLabbAjax.Controllers
         {
             //var p = photos.FirstOrDefault(x => x.PhotoID == id);
             //p.PhotoComment.Add(new Comments { CommentOnPicture = photoComment });
-            var photos = photoRepo.AddCommentToPhoto(id, photoComment);
+            var photo = photoRepo.AddCommentToPhoto(id, photoComment);
+            var photos = PhotoModelMapper.ModelToEntity(photo);
             return PartialView("Index",photos);
         }
         public ActionResult ShowImage(Guid id)
         {
-            var showphoto = photoRepo.GetPhoto(id);
+            var showphotos = photoRepo.GetPhoto(id);
             //var showphoto = photos.FirstOrDefault(x => x.PhotoID == id);
+            var showphoto = PhotoModelMapper.ModelToEntity(showphotos);
             return PartialView(showphoto);
         }
        
@@ -62,6 +65,7 @@ namespace MVCLabbAjax.Controllers
         public ActionResult DeletePicture(Guid id, Photo photo)
         {
             var p = photoRepo.GetPhoto(id);
+            //var p = PhotoModelMapper.ModelToEntity(photodelete);
             //var p = photos.FirstOrDefault(x => x.PhotoID == id);
             string fullPath = Request.MapPath("~/Image/" + p.PhotoName);
 
@@ -72,7 +76,7 @@ namespace MVCLabbAjax.Controllers
                 //photos.Remove(p);
                 photoRepo.DeletePhoto(p);
             }
-            return RedirectToAction("Index",photoRepo.GetAllPhoto());
+            return RedirectToAction("Index", photoRepo.GetAllPhoto().Select(x => PhotoModelMapper.ModelToEntity(x)).ToList());
         }
         public ActionResult UploadPicture()
         {
@@ -104,7 +108,7 @@ namespace MVCLabbAjax.Controllers
                 //    PhotoComment = new List<Comments> { new Comments { CommentOnPicture = comment } } });
             }
 
-            return PartialView("Index",photoRepo.GetAllPhoto());
+            return PartialView("Index", photoRepo.GetAllPhoto().Select(x => PhotoModelMapper.ModelToEntity(x)).ToList());
         }
     }
 }
