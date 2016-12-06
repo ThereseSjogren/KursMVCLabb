@@ -83,7 +83,7 @@ namespace MVCLabb.Controllers
         public ActionResult AddComment(Guid id)
         {
             var p = photos.FirstOrDefault(x => x.PhotoID == id);
-            return View(p);
+            return PartialView("AddComment",p);
         }
 
        [HttpPost]
@@ -91,7 +91,7 @@ namespace MVCLabb.Controllers
         {
             var p = photos.FirstOrDefault(x => x.PhotoID == id);
             p.PhotoComment.Add(new Comments { CommentOnPicture = photoComment } );
-            return View(p);
+            return PartialView("Index",p);
             
         }
     }

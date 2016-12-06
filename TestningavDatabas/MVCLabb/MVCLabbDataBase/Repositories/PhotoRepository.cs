@@ -36,19 +36,12 @@ namespace MVCLabbData.Repositories
         {
             using (var context = new MVCLabbRepositoryDbContext())
             {
-                var photoToDelete = context.PhotoEntityModels.FirstOrDefault(p => p.PhotoId == photo.PhotoId);
+                var photoToDelete = context.PhotoEntityModels.Include("Comment").FirstOrDefault(p => p.PhotoId == photo.PhotoId);
                 context.PhotoEntityModels.Remove(photoToDelete);
                 context.SaveChanges();
             }
         }
-        //Ta bort kommentaren innan man tar bort bilden
-        public void DeleteComment(Guid id)
-        {
-            using (var context = new MVCLabbRepositoryDbContext())
-            {
-               
-            }
-        }
+        
         public PhotoEntityModel GetPhoto(Guid id)
         {
             using (var context = new MVCLabbRepositoryDbContext())
