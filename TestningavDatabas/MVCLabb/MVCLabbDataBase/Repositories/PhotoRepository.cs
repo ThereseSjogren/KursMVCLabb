@@ -15,6 +15,7 @@ namespace MVCLabbData.Repositories
             using (var context = new MVCLabbRepositoryDbContext())
             {
                 var photos = context.PhotoEntityModels.Include("Comment").ToList();
+                //context.PhotoEntityModels.AddOrUpdate(photos);
                 return photos;
             }
     

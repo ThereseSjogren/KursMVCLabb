@@ -33,7 +33,7 @@
             <td>
                 @Ajax.ActionLink("Comment Album", "AddComment", new { id = album.AlbumID }, ajaxListAllAlbum) 
                 @Ajax.ActionLink("Show Album", "ShowAlbum", new { id = album.AlbumID }, ajaxListAllAlbum) 
-                @Ajax.ActionLink("Delete Album", "Delete", new { id = album.AlbumID }, ajaxOption)
+                @*@Ajax.ActionLink("Delete Album", "Delete", new { id = album.AlbumID }, ajaxOption)*@
                 @Ajax.ActionLink("Add Photo to Album", "AddPhotoToAlbum",new { id=album.AlbumID}, ajaxListAllAlbum)
             </td>
             <td>
